@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@drawable/bg_app">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingLeft="18dp" android:paddingTop="22dp" android:paddingRight="18dp" android:paddingBottom="36dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:text="✦  WHATSAPP BUSINESS  ✦" android:textColor="#00F5FF" android:textSize="13sp" android:textStyle="bold" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:gravity="center" android:letterSpacing="0.08" android:text="ESTADOS\nNEON" android:textColor="#FFFFFF" android:textSize="42sp" android:textStyle="bold" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="20dp" android:gravity="center" android:text="Tu paquete diario listo para publicar" android:textColor="#FF5FDE" android:textSize="16sp" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="17dp" android:background="@drawable/bg_panel">
+            <TextView android:id="@+id/countView" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:textColor="#FFFFFF" android:textSize="24sp" android:textStyle="bold" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:layout_marginBottom="14dp" android:gravity="center" android:text="Todos juntos · fotos + video" android:textColor="#99F5FF" android:textSize="14sp" />
+            <Button android:id="@+id/publishButton" android:layout_width="match_parent" android:layout_height="62dp" android:background="@drawable/bg_button_primary" android:text="⚡  PUBLICAR TODO AHORA" android:textAllCaps="false" android:textColor="#FFFFFF" android:textSize="17sp" android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:layout_marginBottom="8dp" android:letterSpacing="0.06" android:text="⏰  HORARIO DIARIO" android:textColor="#FF6EE1" android:textSize="17sp" android:textStyle="bold" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="17dp" android:background="@drawable/bg_panel">
+            <TextView android:id="@+id/timeView" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:textColor="#00F5FF" android:textSize="30sp" android:textStyle="bold" />
+            <Button android:id="@+id/changeTimeButton" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="10dp" android:background="@drawable/bg_button_secondary" android:text="CAMBIAR HORARIO" android:textAllCaps="false" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+            <Switch android:id="@+id/scheduleSwitch" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingTop="16dp" android:paddingBottom="6dp" android:text="Aviso diario activado" android:textColor="#FFFFFF" android:textSize="16sp" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingTop="8dp" android:text="Android puede mover el aviso algunos minutos para ahorrar batería. La publicación final se confirma en WhatsApp Business." android:textColor="#B8AFCA" android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:layout_marginBottom="8dp" android:letterSpacing="0.06" android:text="🎞  CONTENIDO" android:textColor="#FF6EE1" android:textSize="17sp" android:textStyle="bold" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="17dp" android:background="@drawable/bg_panel">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Estas son las piezas que se enviarán juntas. Tocá × para quitar una." android:textColor="#DCD7E6" android:textSize="13sp" />
+            <HorizontalScrollView android:layout_width="match_parent" android:layout_height="235dp" android:scrollbars="none"><LinearLayout android:id="@+id/previewRow" android:layout_width="wrap_content" android:layout_height="match_parent" android:orientation="horizontal" android:paddingTop="12dp" android:paddingBottom="8dp" /></HorizontalScrollView>
+            <Button android:id="@+id/addButton" android:layout_width="match_parent" android:layout_height="52dp" android:background="@drawable/bg_button_secondary" android:text="＋  AGREGAR FOTO O VIDEO" android:textAllCaps="false" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+            <Button android:id="@+id/replaceButton" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="10dp" android:background="@drawable/bg_button_secondary" android:text="↻  REEMPLAZAR TODO EL CONTENIDO" android:textAllCaps="false" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+            <Button android:id="@+id/restoreButton" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="10dp" android:background="@drawable/bg_button_secondary" android:text="✦  RESTAURAR LOS 7 ORIGINALES" android:textAllCaps="false" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+        </LinearLayout>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:gravity="center" android:text="SIN INTERNET • el contenido queda en tu teléfono" android:textColor="#00F5FF" android:textSize="12sp" android:textStyle="bold" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dp" android:gravity="center" android:text="Estados Neon prepara y comparte tus archivos. WhatsApp Business te pedirá elegir “Mi estado” y confirmar el envío." android:textColor="#AAA4BA" android:textSize="12sp" />
+    </LinearLayout>
+</ScrollView>
