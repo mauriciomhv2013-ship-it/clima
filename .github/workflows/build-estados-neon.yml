@@ -36,9 +36,18 @@ jobs:
       - name: Build debug APK
         working-directory: estados-neon
         run: gradle :app:assembleDebug --stacktrace
-      - name: Upload APK
+      - name: Collect signer tools
+        shell: bash
+        run: |
+          mkdir -p estados-neon/tools
+          cp /usr/local/lib/android/sdk/build-tools/35.0.0/lib/apksigner.jar estados-neon/tools/apksigner.jar
+          cp /usr/local/lib/android/sdk/build-tools/35.0.0/zipalign estados-neon/tools/zipalign
+      - name: Upload APK and signer tools
         uses: actions/upload-artifact@v4
         with:
           name: ESTADOS-NEON-APK
-          path: estados-neon/app/build/outputs/apk/debug/app-debug.apk
+          path: |
+            estados-neon/app/build/outputs/apk/debug/app-debug.apk
+            estados-neon/tools/apksigner.jar
+            estados-neon/tools/zipalign
           if-no-files-found: error
