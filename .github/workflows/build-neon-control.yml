@@ -42,3 +42,5 @@ jobs:
           name: NEON-CONTROL-APK
           path: neon-control/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+# NEON Control 2.0 final verification
