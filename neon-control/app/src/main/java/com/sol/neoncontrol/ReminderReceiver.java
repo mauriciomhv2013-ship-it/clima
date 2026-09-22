@@ -34,7 +34,10 @@ public class ReminderReceiver extends BroadcastReceiver {
         if (!p.getBoolean("reminders", true)) { cancel(context); return; }
         int hour = p.getInt("reminder_hour", 10), minute = p.getInt("reminder_minute", 0);
         Calendar next = Calendar.getInstance();
-        next.set(Calendar.HOUR_OF_DAY, hour); next.set(Calendar.MINUTE, minute); next.set(Calendar.SECOND, 0); next.set(Calendar.MILLISECOND, 0);
+        next.set(Calendar.HOUR_OF_DAY, hour);
+        next.set(Calendar.MINUTE, minute);
+        next.set(Calendar.SECOND, 0);
+        next.set(Calendar.MILLISECOND, 0);
         if (next.getTimeInMillis() <= System.currentTimeMillis()) next.add(Calendar.DAY_OF_YEAR, 1);
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (am != null) am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, next.getTimeInMillis(), pending(context));
@@ -55,15 +58,22 @@ public class ReminderReceiver extends BroadcastReceiver {
         if (nm == null) return;
         if (Build.VERSION.SDK_INT >= 26) {
             NotificationChannel ch = new NotificationChannel(CHANNEL, "Vencimientos y cobros", NotificationManager.IMPORTANCE_HIGH);
-            ch.setDescription("Avisos diarios de clientes por vencer"); nm.createNotificationChannel(ch);
+            ch.setDescription("Avisos diarios de clientes por vencer");
+            nm.createNotificationChannel(ch);
         }
-        Intent open = new Intent(c, MainActivity.class).putExtra("open_collect", true).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Intent open = new Intent(c, MainActivityV2.class)
+                .putExtra("open_collect", true)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pi = PendingIntent.getActivity(c, 7712, open, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         String text = count == 1 ? "Tenés 1 cliente para revisar hoy." : "Tenés " + count + " clientes para revisar hoy.";
         Notification.Builder b = Build.VERSION.SDK_INT >= 26 ? new Notification.Builder(c, CHANNEL) : new Notification.Builder(c);
-        b.setSmallIcon(com.sol.neoncontrol.R.drawable.ic_launcher).setContentTitle("NEON Control · Cobrar hoy")
-                .setContentText(text).setStyle(new Notification.BigTextStyle().bigText(text + " Tocá para ver vencimientos y mandar WhatsApp."))
-                .setContentIntent(pi).setAutoCancel(true).setPriority(Notification.PRIORITY_HIGH);
+        b.setSmallIcon(com.sol.neoncontrol.R.drawable.ic_launcher)
+                .setContentTitle("NEON Control · Cobrar hoy")
+                .setContentText(text)
+                .setStyle(new Notification.BigTextStyle().bigText(text + " Tocá para ver vencimientos y mandar WhatsApp."))
+                .setContentIntent(pi)
+                .setAutoCancel(true)
+                .setPriority(Notification.PRIORITY_HIGH);
         nm.notify(7713, b.build());
     }
 }
