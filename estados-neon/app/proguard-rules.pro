@@ -1,1 +1,1 @@
-# Sin reglas especiales para esta versión.
+# Sin reglas adicionales por ahora.
