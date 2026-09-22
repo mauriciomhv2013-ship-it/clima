@@ -3,7 +3,7 @@ name: Build Neon Control APK
 on:
   workflow_dispatch:
   push:
-    branches: [ main, neon-control-2.0 ]
+    branches: [ main, neon-control-2.0, neon-control-2.1-accessibility ]
     paths:
       - 'neon-control/**'
       - '.github/workflows/build-neon-control.yml'
@@ -43,4 +43,4 @@ jobs:
           path: neon-control/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
 
-# NEON Control 2.0 final verification
+# NEON Control 2.1 accessibility verification

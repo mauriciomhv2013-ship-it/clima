@@ -61,7 +61,7 @@ public class ReminderReceiver extends BroadcastReceiver {
             ch.setDescription("Avisos diarios de clientes por vencer");
             nm.createNotificationChannel(ch);
         }
-        Intent open = new Intent(c, MainActivityV2.class)
+        Intent open = new Intent(c, MainActivityV3.class)
                 .putExtra("open_collect", true)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pi = PendingIntent.getActivity(c, 7712, open, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
