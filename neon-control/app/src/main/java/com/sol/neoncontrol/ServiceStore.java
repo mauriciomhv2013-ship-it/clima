@@ -12,10 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Catálogo editable de servicios. Vive en la misma base de datos de NEON Control,
- * pero se crea de forma compatible con las instalaciones 1.x existentes.
- */
+/** Catálogo editable de servicios, compatible con la base existente de NEON Control. */
 public class ServiceStore {
     private final ClientDb db;
 
@@ -42,10 +39,15 @@ public class ServiceStore {
                 "active INTEGER NOT NULL DEFAULT 1," +
                 "created_at INTEGER NOT NULL," +
                 "updated_at INTEGER NOT NULL)");
-        seedDefaults(sql);
+        seedDefaultsOnlyWhenEmpty(sql);
     }
 
-    private void seedDefaults(SQLiteDatabase sql) {
+    private void seedDefaultsOnlyWhenEmpty(SQLiteDatabase sql) {
+        int count = 0;
+        try (Cursor c = sql.rawQuery("SELECT COUNT(*) FROM services", null)) {
+            if (c.moveToFirst()) count = c.getInt(0);
+        }
+        if (count > 0) return;
         String[] defaults = {
                 "Netflix",
                 "HBO Max",
@@ -136,7 +138,7 @@ public class ServiceStore {
 
     public void importJson(JSONObject root) throws Exception {
         JSONArray arr = root.optJSONArray("services");
-        if (arr == null) return; // copias de seguridad de versiones anteriores
+        if (arr == null) return;
         SQLiteDatabase sql = db.getWritableDatabase();
         sql.beginTransaction();
         try {
@@ -155,7 +157,7 @@ public class ServiceStore {
                 v.put("updated_at", now);
                 sql.insertWithOnConflict("services", null, v, SQLiteDatabase.CONFLICT_REPLACE);
             }
-            seedDefaults(sql);
+            seedDefaultsOnlyWhenEmpty(sql);
             sql.setTransactionSuccessful();
         } finally {
             sql.endTransaction();
